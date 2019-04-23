@@ -3,7 +3,7 @@ import { Storage } from "aws-amplify";
 import { PhotoPicker } from "aws-amplify-react";
 import * as nsfwjs from "nsfwjs/dist";
 import styled from "@emotion/styled";
-import { keyframes } from "@emotion/core";
+import { Global, css, keyframes } from "@emotion/core";
 import { navigate } from "@reach/router";
 import uuid from "uuid";
 
@@ -189,6 +189,14 @@ export default () => {
 
   return state.loaded ? (
     <>
+      <Global
+        styles={css`
+          img {
+            max-width: 380px !important;
+            max-height: 380px;
+          }
+        `}
+      />
       <Header />
       <Layout>
         <PhotoPicker
@@ -197,13 +205,7 @@ export default () => {
             setState({ ...state, file: data.file, processing: true });
           }}
         />
-        {state.processing ? (
-          <Overlay>
-            <LoaderContainer>
-              <Loader />
-            </LoaderContainer>
-          </Overlay>
-        ) : null}
+        {state.processing ? <Overlay /> : null}
       </Layout>
     </>
   ) : (
