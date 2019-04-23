@@ -1,3 +1,9 @@
+# Safe Content Uploads with Amplify and NSFWJS
+
+This project uses [AWS Amplify](https://aws-amplify.github.io/) for authentication and file management. It also uses [NSFWJS](https://github.com/infinitered/nsfwjs) for content checking.
+
+---
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
