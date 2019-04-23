@@ -48,7 +48,7 @@ export default () => {
 
   useEffect(() => {
     async function loadPhotos() {
-      const photos = await Storage.list("uploads/", { level: "protected" });
+      const photos = await Storage.list("uploads/");
       setState({ photos, loaded: true });
     }
 
@@ -63,7 +63,7 @@ export default () => {
           {!!state.photos.length &&
             state.photos.map(({ key }) => (
               <GridItem key={key}>
-                <S3Image level="protected" imgKey={key} />
+                <S3Image imgKey={key} />
               </GridItem>
             ))}
         </PhotoGrid>

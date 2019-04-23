@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Storage, Auth } from "aws-amplify";
-import { PhotoPicker, withAuthenticator } from "aws-amplify-react";
+import { Storage } from "aws-amplify";
+import { PhotoPicker } from "aws-amplify-react";
 import * as nsfwjs from "nsfwjs/dist";
 import styled from "@emotion/styled";
 import { keyframes } from "@emotion/core";
 import { navigate } from "@reach/router";
+import uuid from "uuid";
 
 import Header from "./Header";
 
@@ -115,7 +116,7 @@ const LoadingMessage = styled("h2")`
   color: #ffc300;
 `;
 
-const Upload = () => {
+export default () => {
   const [state, setState] = useState({
     model: null,
     loaded: false,
@@ -125,7 +126,7 @@ const Upload = () => {
   useEffect(() => {
     async function loadModel() {
       nsfwjs
-        .load("http://nsfwjs-model.surge.sh/")
+        .load("https://nsfwjs-model.surge.sh/")
         .then(model => {
           setState({ ...state, model, loaded: true });
           return undefined;
@@ -154,13 +155,12 @@ const Upload = () => {
           );
 
           if (isClean) {
-            const user = await Auth.currentAuthenticatedUser();
+            const random = uuid();
 
             await Storage.put(
-              `uploads/${user.attributes.sub}/${state.file.name}`,
+              `uploads/${random}-${state.file.name}`,
               state.file,
               {
-                level: "protected",
                 contentType: state.file.type
               }
             );
@@ -176,6 +176,7 @@ const Upload = () => {
             );
           }
         };
+
         reader.readAsDataURL(state.file);
       } catch (error) {
         console.log(error);
@@ -217,7 +218,3 @@ const Upload = () => {
     </>
   );
 };
-
-export default withAuthenticator(Upload, {
-  includeGreetings: false
-});
