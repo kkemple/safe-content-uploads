@@ -1,28 +1,36 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Amplify from "aws-amplify";
+import aws_exports from "./aws-exports";
+import { Router } from "@reach/router";
+import { Global, css } from "@emotion/core";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+import Upload from "./Upload";
+import Uploads from "./Uploads";
 
-export default App;
+Amplify.configure(aws_exports);
+
+export default () => (
+  <div>
+    <Global
+      styles={css`
+        *,
+        *::after,
+        *::before {
+          box-sizing: border-box;
+          -moz-osx-font-smoothing: grayscale;
+          -webkit-font-smoothing: antialiased;
+          font-smoothing: antialiased;
+        }
+
+        html {
+          min-height: 100vh;
+          background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+        }
+      `}
+    />
+    <Router>
+      <Uploads path="/" />
+      <Upload path="/upload-photo" level="public" />
+    </Router>
+  </div>
+);

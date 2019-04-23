@@ -1,0 +1,14 @@
+{
+	"auth": {
+		"cognito2d80ee82": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation"
+		}
+	},
+	"storage": {
+		"safecontentexample": {
+			"service": "S3",
+			"providerPlugin": "awscloudformation"
+		}
+	}
+}

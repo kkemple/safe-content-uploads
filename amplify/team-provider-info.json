@@ -1,0 +1,19 @@
+{
+    "master": {
+        "awscloudformation": {
+            "AuthRoleName": "safe-content-uploads-20190420142517-authRole",
+            "UnauthRoleArn": "arn:aws:iam::781155362072:role/safe-content-uploads-20190420142517-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::781155362072:role/safe-content-uploads-20190420142517-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "safe-content-uploads-20190420142517-deployment",
+            "UnauthRoleName": "safe-content-uploads-20190420142517-unauthRole",
+            "StackName": "safe-content-uploads-20190420142517",
+            "StackId": "arn:aws:cloudformation:us-east-1:781155362072:stack/safe-content-uploads-20190420142517/a5fb80a0-6399-11e9-b526-0e3dd8dc9008"
+        },
+        "categories": {
+            "auth": {
+                "cognito2d80ee82": {}
+            }
+        }
+    }
+}
